@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projeto_Yakult_CA.RegVendasView">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="Center">
+                    <Label Text="Valor Total" TextColor="DarkRed" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="0">
+                    <Entry x:Name="txtVlrTotal" Keyboard="Numeric" BackgroundColor="LightGray"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" HorizontalOptions="Center">
+                    <Label Text="Saldo Anterior" TextColor="DarkRed" FontSize="Medium" />
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="1">
+                    <Entry x:Name="txtSaldoAnterior" Keyboard="Numeric" BackgroundColor="LightGray"  IsEnabled="False"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="2" HorizontalOptions="Center">
+                    <Label Text="Valor Pago" TextColor="DarkRed" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="2">
+                    <Entry x:Name="txtVlrPago" Keyboard="Numeric" BackgroundColor="LightGray"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Grid.Row="3">
+                    <Button Text="Calcular" Image="calculadora.png" HorizontalOptions="Fill" Clicked="Calcular_Clicked" BackgroundColor="Transparent" />
+                </StackLayout>
+                
+                <StackLayout Grid.Column="0" Grid.Row="4" HorizontalOptions="Center">
+                    <Label Text="Troco" TextColor="DarkRed" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="4">
+                    <Entry x:Name="TxtVlrTroco" Keyboard="Numeric" BackgroundColor="LightGray"  IsEnabled="False"/>
+                </StackLayout>
+
+
+                <Button Grid.Column="0" Grid.Row="5" x:Name="BtnDevolverTroco" Image="setas_devolucao.png" Clicked="BtnDevolverTroco_Clicked" 
+                        IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                
+                <Button Grid.Column="0" Grid.Row="5" x:Name="BtnEnviarTroco" Image="setas_troco_disabled.png" Clicked="BtnEnviarTroco_Clicked"
+                        IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                
+
+                <StackLayout Grid.Column="0" Grid.Row="6" HorizontalOptions="Center">
+                    <Label Text="Valor Crédito/Débito" TextColor="DarkRed" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="6">
+                    <Entry x:Name="txtVlrCalculo" Keyboard="Numeric" BackgroundColor="LightGray" IsEnabled="False"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="7" HorizontalOptions="Center">
+                    <Label Text="Data do Pagamento" TextColor="DarkRed" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="7">
+                    <DatePicker Format="dd/MM/yyyy"/>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Padding="10" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                <Button Text="Finalizar Pagamento" BackgroundColor="LightGreen" Clicked="FinalizarPgto_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+
+</ContentPage>

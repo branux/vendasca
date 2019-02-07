@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Projeto_Yakult_CA.ViewModel"
+             x:Class="Projeto_Yakult_CA.ResumoVendasView"
+             xmlns:converters="clr-namespace:Projeto_Yakult_CA.Converters"
+             x:Name="ResumoDeVenda">
+    <ContentPage.BindingContext>
+        <vm:ResumovendaViewModel></vm:ResumovendaViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <converters:Converters x:Key="negativo"></converters:Converters>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout  >
+            <!--<Label x:Name="LblTeste" Text="{Binding Teste}" TextColor="Black" FontSize="20"></Label>-->
+            <ListView x:Name="LstProdutos" ItemsSource="{Binding ProdutoInicio, Mode=TwoWay}"  Margin="5" SeparatorColor="Red" RowHeight="60"     >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="Item">
+                            <ViewCell.View>
+                                <Grid Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" ></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                        <ColumnDefinition Width="40"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Row="0" Grid.Column="0" Source="{Binding LocalImagemProduto}" Aspect="AspectFill"  BackgroundColor="Transparent" HorizontalOptions="Center" Grid.RowSpan="2"/>
+                                    <Label Grid.Row="0" Grid.Column="1" x:Name="NomeProduto" Text="{Binding NomeProduto}" XAlign="Center" YAlign="Center" FontSize="15" VerticalTextAlignment="Center" TextColor="#006699"/>
+                                    <Label Grid.Row="1" Grid.Column="1" x:Name="ValorProduto" Text="{Binding ValorProduto, StringFormat='R$ {0}'}" XAlign="Center" YAlign="Center" FontSize="10" FontAttributes="Bold" VerticalTextAlignment="Center"  TextColor="#f78f2b"></Label>
+
+                                    <Entry Grid.Row="0" Grid.Column="2" x:Name="TxtQtde" Placeholder="{Binding ResumoVendaModel.QtdProd}" Text="{Binding ResumoVendaModel.QtdProd}" Keyboard="Numeric" Grid.RowSpan="2" ></Entry>
+
+                                    <ImageButton Grid.Row="0" Grid.Column="3" x:Name="BtnCarrinho" Source="carrinho_compras.jpeg" Aspect="AspectFit" BindingContext="{Binding Source={x:Reference LstProdutos}, Path=BindingContext}"
+                                                     Command="{Binding CalcularCommand, Mode=TwoWay}" CommandParameter="{Binding Source={x:Reference Item},Path=BindingContext}" BackgroundColor="Transparent"  HorizontalOptions="Center"  Grid.RowSpan="2" />
+
+                                    <Label Grid.Row="0" Grid.Column="4" x:Name="txtQtdeTotal" Text="{Binding QtdProd, Mode=TwoWay,StringFormat='Qtd:{0:0}'}" FontSize="15" VerticalTextAlignment="Center" Grid.RowSpan="2" />
+                                    <Label Grid.Row="1" Grid.Column="4" x:Name="txtvalor" Text="{Binding Vlr_Total, Mode=TwoWay,StringFormat='R${0:F2}'}" FontSize="15" VerticalTextAlignment="Center" Grid.RowSpan="2"  />
+
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout Orientation="Horizontal" >
+                <Label x:Name="lblTotalProdutos" Text="{Binding TotalGeral, Mode=OneWay,StringFormat='Valor Total: R${0:F2}'}"  FontSize="Large" TextColor="Red" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"  />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding SomaValores, Mode=TwoWay}"  FontSize="12" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"  />
+                <Button Text="Finalizar Pedido" VerticalOptions="End" BackgroundColor="#add091" Command="{Binding FinalizarPedidoCommand}" ></Button>
+            </StackLayout>
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

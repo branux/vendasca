@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Behavior="clr-namespace:Projeto_Yakult_CA.ViewModel"
+             x:Class="Projeto_Yakult_CA.CadastrarClientePageView">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="15" Spacing="10">
+                <Image Source="{Binding FotoPerfil}" x:Name="imgPerfil" HeightRequest="{Binding AlturaFoto}" WidthRequest="{Binding LarguraFoto}"></Image>
+                <Button Text="Tirar Foto" Command="{Binding TirarFotoCommand}"></Button>
+                
+                <Label Text="Nome Cliente" TextColor="DarkRed" FontSize="Medium"/>
+                <Entry x:Name="txtNomeCliente" Text="{Binding Nome}" BackgroundColor="LightGray"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Núm. Telefone" TextColor="DarkRed" FontSize="Medium"/>
+                    <Label Text="Tel. Fixo"/>
+                    <Switch IsToggled="True" ></Switch>
+                    <Label Text="Celular"/>
+                </StackLayout>
+                <Entry x:Name="txtTelefone" Keyboard="Numeric" Text="{Binding Telefone}" BackgroundColor="LightGray" Placeholder="(   )      -     ">
+                    <Entry.Behaviors>
+                        <Behavior:MaskedBehavior Mask="(XX)XXXXX-XXXX" />
+                    </Entry.Behaviors>
+                </Entry>
+
+
+                <StackLayout>
+                    <Label Text="CEP" TextColor="DarkRed" FontSize="Medium"/>
+                    <Grid Padding="5,10,5,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" >
+                            <Entry x:Name="txtCEP" Keyboard="Numeric" Text="{Binding CEP}" BackgroundColor="LightGray" 
+                           Placeholder="Digite o Cep            ">
+                                <Entry.Behaviors>
+                                    <Behavior:MaskedBehavior Mask="XXXXX-XXX" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" >
+                            <Button Image="buscaCEP" Command="{Binding BuscaCep}" ></Button>
+                        </StackLayout>                      
+                    </Grid>                   
+                    
+                </StackLayout>
+
+                
+                <StackLayout IsVisible="{Binding IsVisibleContainerEndereco}">
+
+                    <Label Text="Endereço" TextColor="DarkRed" FontSize="Medium"/>
+                    <Entry x:Name="txtEndereco" Text="{Binding Logradouro}" BackgroundColor="LightGray" IsEnabled="{Binding EnabledCampos}"/>
+                    
+                    <Label Text="Complemento" TextColor="DarkRed" FontSize="Medium"/>
+                    <Entry x:Name="txtComplemento" Text="{Binding Complemento}" BackgroundColor="LightGray" />
+
+                    <Label Text="Cidade" TextColor="DarkRed" FontSize="Medium"/>
+                    <Entry x:Name="txtCidade" Text="{Binding localidade}" BackgroundColor="LightGray" IsEnabled="{Binding EnabledCampos}"/>
+
+                    <Label Text="Bairro" TextColor="DarkRed" FontSize="Medium"/>
+                    <Entry x:Name="txtBairro" Text="{Binding Bairro}" BackgroundColor="LightGray" IsEnabled="{Binding EnabledCampos}"/>
+
+                    <Label Text="Estado" TextColor="DarkRed" FontSize="Medium"/>
+                    <Entry x:Name="txtEstado" Text="{Binding UF}" BackgroundColor="LightGray" Placeholder="UF" IsEnabled="{Binding EnabledCampos}"/>
+
+                    <Label Text="Rota" TextColor="DarkRed" FontSize="Medium"/>
+                    <Picker x:Name="PkRota" Title="Seleciona uma Rota" 
+                            ItemsSource="{Binding ListaRotas}" 
+                            ItemDisplayBinding="{Binding Rota}" 
+                            SelectedItem="{Binding Rota}">                        
+                    </Picker>
+
+                </StackLayout>
+
+                <Button Text="{Binding TextNameButton}" BackgroundColor="LightGreen" Command="{Binding CadastrarCliente}" IsEnabled="{Binding IsEnableBtnCadastrar}"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

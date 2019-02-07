@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+             x:Class="Projeto_Yakult_CA.PagePrincipalView"
+             >
+    
+    <StackLayout>
+        <Label x:Name="lblPrincipal" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding TotalClientes, StringFormat='Total de Clientes : {0}'}"></Label>
+
+        <ListView x:Name="LstClientes" ItemsSource="{Binding Clientes,Mode=TwoWay}"  Margin="20" ItemTapped="LstClientes_ItemTapped" RowHeight="100"   >
+            <ListView.ItemTemplate  >
+                <DataTemplate >
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"  >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="65"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="70"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Orientation="Vertical">
+                                    <Image Source="perfil.png" Aspect="AspectFill" WidthRequest="60" HeightRequest="60" ></Image>
+                                    <Label Text="{Binding Status_Cliente, StringFormat='Status : {0}'}" TextColor="DarkRed" FontAttributes="Italic"  FontSize="10"></Label>
+                                </StackLayout>
+
+                                <StackLayout  Grid.Column="1" Grid.Row="0">
+                                    <Label Text="{Binding Nome}" FontSize="20" FontAttributes="Bold" ></Label>
+                                    <Label x:Name="LblEndereco" Text="{Binding Logradouro}" TextColor="Black" FontSize="15" ></Label>
+                                    
+                                    <Label Text="{Binding SaldoFormatado, StringFormat='Saldo : {0}'}" TextColor="DarkRed" FontAttributes="Bold"  FontSize="15"></Label>
+                                </StackLayout>
+
+                            </Grid>
+                            
+                        </StackLayout>
+                        
+                        <!--<ViewCell.ContextActions>
+                            
+                            <MenuItem Text="Ver Cadastro" Clicked="VerCadastro_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                            <MenuItem Text="Registrar Venda" Clicked="RegistrarVenda_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                            <MenuItem Text="Registrar Pagamento" Clicked="RegistrarPagamento_Clicked" CommandParameter="{Binding .}"></MenuItem>
+
+                        </ViewCell.ContextActions>-->
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>

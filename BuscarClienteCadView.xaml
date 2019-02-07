@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projeto_Yakult_CA.BuscarClienteCadView">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="TxtSearch" TextChanged="TxtSearch_TextChanged" HorizontalOptions="FillAndExpand" />
+                <!--<Label Text="End."/>
+                <Label Text="Nome"/>-->
+                <Switch Toggled="TlgSearch_Toggled" IsToggled="True" x:Name="TlgSearch" ></Switch>
+            </StackLayout>
+            
+            <ListView x:Name="ListaClientes" RowHeight="50" ItemTapped="ListaClientes_ItemTapped"   >
+                <ListView.ItemTemplate  >
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout Orientation="Horizontal"   >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>                                        
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="3*"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <StackLayout Grid.Column="0">
+                                        <Label Grid.Row="0" Text="{Binding Nome}" FontSize="Medium" FontAttributes="Bold" ></Label>
+                                        <Label Grid.Row="1" Text="{Binding Logradouro}" FontSize="15" ></Label>
+                                        <Label Grid.Row="1" Text="{Binding Rota}" FontSize="12" ></Label>
+                                    </StackLayout>                                    
+                                   
+                                </Grid>
+
+                                
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

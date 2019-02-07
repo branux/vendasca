@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projeto_Yakult_CA.DetalhesClienteView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="{Binding FotoPerfil}" x:Name="imgPerfil"></Image>
+            <Button Text="Tirar Foto" Command="{Binding TirarFotoCommand}"></Button>
+            <!--<Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblSaldo">Teste seu saldo atual é de R$ 0,50</Label>
+            </StackLayout>
+            <TableView Intent="Form">
+                <TableRoot>
+                    <TableSection Title="Dados do Cliente" x:Name="tblSecaoCliente">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label>End.:</Label>
+                                <Label Text="Av. José Bonifácio, 1500" TextColor="#f35e20" />
+                                <Label>Comp:</Label>
+                                <Label Text="Casa dos Fundos" TextColor="#f35e20" />
+                                <!--<Label Text="right"
+                              HorizontalOptions="EndAndExpand"
+                              TextColor="#503026" />-->
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label>CEP:</Label>
+                                <Label Text="09220-230" TextColor="#f35e20" />
+                                <Label>Bairro:</Label>
+                                <Label Text="Jardim Paulista" TextColor="#f35e20" />
+                                <Label>Cid.:</Label>
+                                <Label Text="São Paulo" TextColor="#f35e20" />
+                                <!--<Label Text="right"
+                              HorizontalOptions="EndAndExpand"
+                              TextColor="#503026" />-->
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Últimas Compras">
+                        <ViewCell>
+                            <StackLayout  Padding="15">
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
